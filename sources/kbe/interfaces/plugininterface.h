@@ -49,7 +49,7 @@ public:
     virtual void shutdown() = 0;
 };
 
-Q_DECLARE_INTERFACE(PluginInterface,
-                    "com.OSTIS.kbe.PluginInterface/1.0")
+#define PluginInterface_IID "com.OSTIS.kbe.PluginInterface/1.0"
+Q_DECLARE_INTERFACE(PluginInterface, PluginInterface_IID)
 
 #endif // PLUGIN_H

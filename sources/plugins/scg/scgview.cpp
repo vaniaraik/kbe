@@ -589,7 +589,7 @@ void SCgView::updateSceneRect(const QRectF& rect)
         QPointF topLeft = mapToScene(0,0);
         QPointF bottomRight = mapToScene(viewport()->width(),viewport()->height());
         QRectF vis(topLeft,bottomRight);
-        QRectF result = rect.adjusted(-100,-100,100,100).unite(vis).unite(sceneRect());
+        QRectF result = rect.adjusted(-100,-100,100,100).united(vis).united(sceneRect());
         setSceneRect(result);
 
         emit sceneRectChanged(result);

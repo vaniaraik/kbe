@@ -12,7 +12,8 @@
 #include <QDoubleSpinBox>
 #include <QDialogButtonBox>
 
-#include <QtConcurrentMap>
+#include <QtConcurrent/qtconcurrentmap.h>
+
 //------------------------------------------------------------------------------
 SCgEnergyBasedArranger::SCgEnergyBasedArranger(QObject *parent)
         : SCgArranger(parent)

@@ -58,7 +58,7 @@ void SCgSelectMode::mouseDoubleClick(QGraphicsSceneMouseEvent *event)
     // left button
     if (event->button() == Qt::LeftButton)
     {
-        QGraphicsItem *item = mScene->itemAt(mousePos);
+        QGraphicsItem *item = mScene->itemAt(mousePos, mScene->views()[0]->transform());
         if(mCurrentPointObject)
         {
             QPainterPath p = mCurrentPointObject->lineShape();
@@ -89,7 +89,6 @@ void SCgSelectMode::mouseMove(QGraphicsSceneMouseEvent *event)
     if(event->buttons()==Qt::LeftButton && !mIsItemsMoved && !mIsTypeClonning)
     {
         //We should use there current event position (not mStartPos) because of the delay between mousePress and mouseMove events.
-        //______________________________________________________//
         //Store start positions(before items moving)
         QList<QGraphicsItem*> items = mScene->selectedItems();
         QList<QGraphicsItem*>::const_iterator it = items.begin();
@@ -105,7 +104,7 @@ void SCgSelectMode::mouseMove(QGraphicsSceneMouseEvent *event)
             }
             ++it;
         }
-        //______________________________________________________//
+
         mIsItemsMoved = !mUndoInfo.empty();
     }
 }
@@ -114,7 +113,7 @@ void SCgSelectMode::mousePress(QGraphicsSceneMouseEvent *event)
 {
     if (event->modifiers() == Qt::ControlModifier && event->button() == Qt::LeftButton)
     {
-        SCgObject *obj = static_cast<SCgObject*>(mScene->itemAt(event->scenePos()));
+        SCgObject *obj = static_cast<SCgObject*>(mScene->itemAt(event->scenePos(), mScene->views()[0]->transform()));
         if (obj && (obj->type() == SCgNode::Type || obj->type() == SCgPair::Type))
         {
             mIsTypeClonning = true;
@@ -128,7 +127,7 @@ void SCgSelectMode::mousePress(QGraphicsSceneMouseEvent *event)
     {
         if(mCurrentPointObject)
         {
-            QGraphicsItem *it = mScene->itemAt(event->scenePos());
+            QGraphicsItem *it = mScene->itemAt(event->scenePos(), mScene->views()[0]->transform());
 
             if (it == 0 || (it != mCurrentPointObject && SCgObject::isSCgObjectType(it->type())))
             {
@@ -145,7 +144,7 @@ void SCgSelectMode::mousePress(QGraphicsSceneMouseEvent *event)
         }else
         {
             QPointF cur_pos = event->scenePos();
-            QGraphicsItem* item = mScene->itemAt(cur_pos);
+            QGraphicsItem* item = mScene->itemAt(cur_pos, mScene->views()[0]->transform());
             if(item && SCgObject::isSCgPointObjectType(item->type()))
             {
                 mCurrentPointObject = static_cast<SCgPointObject*>(item);
@@ -216,7 +215,7 @@ void SCgSelectMode::mouseRelease(QGraphicsSceneMouseEvent *event)
             else
             {
                 // we need check if items under cursor contain old parent item
-                if (mScene->itemAt(item->scenePos()) != oldParent)
+                if (mScene->itemAt(item->scenePos(), mScene->views()[0]->transform()) != oldParent)
                 {
                     it.value().second.second = item->scenePos();
                     item->setParentItem(0);
@@ -233,7 +232,7 @@ void SCgSelectMode::mouseRelease(QGraphicsSceneMouseEvent *event)
     }
     else if (mIsTypeClonning)
     {
-        SCgObject *obj = static_cast<SCgObject*>(mScene->itemAt(event->scenePos()));
+        SCgObject *obj = static_cast<SCgObject*>(mScene->itemAt(event->scenePos(), mScene->views()[0]->transform()));
         if (obj && obj->type() == mObjectType && obj->typeAlias() != mCloningType)
             mScene->changeObjectTypeCommand(obj, mCloningType);
         mIsTypeClonning = false;

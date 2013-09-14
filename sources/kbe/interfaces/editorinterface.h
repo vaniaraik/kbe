@@ -174,13 +174,12 @@ public:
     virtual QIcon icon() const = 0;
 };
 
+#define EditorInterface_IID "com.OSTIS.kbe.EditorInterface/1.0"
+#define EditorFactoryInterface_IID "com.OSTIS.kbe.EditorFactoryInterface/1.0"
+#define EditorObserverInterface_IID "com.OSTIS.kbe.EditorObserverInterface/1.0"
 
-
-Q_DECLARE_INTERFACE(EditorInterface,
-                    "com.OSTIS.kbe.EditorInterface/1.0")
-Q_DECLARE_INTERFACE(EditorFactoryInterface,
-                    "com.OSTIS.kbe.EditorFactoryInterface/1.0")
-Q_DECLARE_INTERFACE(EditorObserverInterface,
-                    "com.OSTIS.kbe.EditorObserverInterface/1.0")
+Q_DECLARE_INTERFACE(EditorInterface, EditorInterface_IID)
+Q_DECLARE_INTERFACE(EditorFactoryInterface, EditorFactoryInterface_IID)
+Q_DECLARE_INTERFACE(EditorObserverInterface, EditorObserverInterface_IID)
 
 #endif // WINDOWINTERFACE_H

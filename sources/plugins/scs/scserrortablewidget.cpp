@@ -15,15 +15,15 @@ SCsErrorTableWidget::SCsErrorTableWidget(QWidget *parent) :
 	setRowCount(0);
 	setColumnCount(2);
 
-    verticalHeader()->setResizeMode(QHeaderView::Fixed);
+    verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 
 	
     QHeaderView *header = new QHeaderView(Qt::Horizontal);
-    header->setResizeMode(QHeaderView::Fixed);
+    header->setSectionResizeMode(QHeaderView::Fixed);
     this->setHorizontalHeader(header);
 
     setMinimumWidth(200);
-    this->horizontalHeader()->setMovable(false);
+    this->horizontalHeader()->setSectionsMovable(false);
 
     hide();
 }

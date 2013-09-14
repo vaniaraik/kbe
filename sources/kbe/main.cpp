@@ -26,7 +26,7 @@ along with OSTIS.  If not, see <http://www.gnu.org/licenses/>.
 #include "mainwindow.h"
 #include "guidedialog.h"
 
-#include <QtGui/QApplication>
+#include <QApplication>
 #include <QTranslator>
 #include <QLocale>
 #include <QTextCodec>
@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
     a.installTranslator(&myappTranslator);
 
     //splash.showMessage(a.tr("Create interface"), Qt::AlignBottom | Qt::AlignHCenter);
-    MainWindow::getInstance()->show();
+    MainWindow::getInstance()->showMaximized();
 
     for(int i = 1; i < argc; i++)
     {

@@ -32,8 +32,8 @@ along with OSTIS.  If not, see <http://www.gnu.org/licenses/>.
 #include <QGraphicsScene>
 #include <QGraphicsView>
 
-SCgNode::SCgNode(QGraphicsItem *parent, QGraphicsScene *scene) :
-    SCgObject(parent, scene),
+SCgNode::SCgNode(QGraphicsItem *parent) :
+    SCgObject(parent),
     SCgContent(),
     mStructType(SCgAlphabet::StructUnknown),
     mIsContentVisible(false),

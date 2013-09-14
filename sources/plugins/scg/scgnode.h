@@ -41,7 +41,7 @@ public:
       */
     int type() const { return Type; }
 
-    explicit SCgNode(QGraphicsItem *parent = 0, QGraphicsScene *scene = 0);
+    explicit SCgNode(QGraphicsItem *parent = 0);
     virtual ~SCgNode();
 
 private:

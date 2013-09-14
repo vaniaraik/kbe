@@ -49,6 +49,7 @@ along with OSTIS.  If not, see <http://www.gnu.org/licenses/>.
 #include <QCloseEvent>
 #include <QSettings>
 #include <QDockWidget>
+#include <QMimeData>
 
 MainWindow* MainWindow::mInstance = 0;
 
@@ -68,6 +69,9 @@ MainWindow::MainWindow(QWidget *parent) :
         mToolBarFile(0),
         mToolBarEdit(0)
 {
+    mContainer = new QWidget(this);
+    setCentralWidget(mContainer);
+
     ui->setupUi(this);
 
     mLastDir = QDir(QCoreApplication::applicationDirPath());
@@ -129,7 +133,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::createToolBars()
 {
-    mToolBarFile = new QToolBar;
+    mToolBarFile = new QToolBar(this);
     mToolBarFile->addAction(ui->actionNew);
     mToolBarFile->addAction(ui->actionOpen);
     mToolBarFile->addAction(ui->actionSave);

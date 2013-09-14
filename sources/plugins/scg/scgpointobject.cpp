@@ -26,8 +26,8 @@ along with OSTIS.  If not, see <http://www.gnu.org/licenses/>.
 #include <QVector2D>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-SCgPointObject::SCgPointObject(QGraphicsItem *parent, QGraphicsScene *scene) :
-    SCgObject(parent, scene)
+SCgPointObject::SCgPointObject(QGraphicsItem *parent) :
+    SCgObject(parent)
 {
 
 }

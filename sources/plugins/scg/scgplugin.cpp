@@ -39,7 +39,7 @@ along with OSTIS.  If not, see <http://www.gnu.org/licenses/>.
 #include <QApplication>
 #include <QLocale>
 
-Q_EXPORT_PLUGIN2(scg, SCgPlugin)
+Q_PLUGIN_METADATA(IID PluginInterface_IID)
 
 SCgPlugin::SCgPlugin(QObject *parent) :
     QObject(parent),

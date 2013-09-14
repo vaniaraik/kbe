@@ -134,6 +134,7 @@ private:
 
 private:
     Ui::MainWindow *ui;
+    QWidget *mContainer;
 
     ExtendedTabWidget *mTabWidget;
     int windowCounter;    // windows counter for untitled windows naming

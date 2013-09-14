@@ -37,8 +37,8 @@ along with OSTIS.  If not, see <http://www.gnu.org/licenses/>.
 #include <QGraphicsScene>
 #include <QApplication>
 
-SCgObject::SCgObject(QGraphicsItem *parent, QGraphicsScene *scene) :
-        QGraphicsItem(parent, scene),
+SCgObject::SCgObject(QGraphicsItem *parent) :
+        QGraphicsItem(parent),
         mConstType(SCgAlphabet::ConstUnknown),
         mIsBoundingBoxVisible(false),
         mTextItem(0),

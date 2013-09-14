@@ -29,7 +29,7 @@ along with OSTIS.  If not, see <http://www.gnu.org/licenses/>.
 #include <QApplication>
 #include <QLocale>
 
-Q_EXPORT_PLUGIN2(m4scp, M4SCpPlugin)
+Q_PLUGIN_METADATA(IID PluginInterface_IID)
 
 M4SCpPlugin::M4SCpPlugin(QObject *parent) :
     QObject(parent),
