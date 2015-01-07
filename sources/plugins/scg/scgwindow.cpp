@@ -57,6 +57,9 @@ along with OSTIS.  If not, see <http://www.gnu.org/licenses/>.
 #include "gwf/gwffileloader.h"
 #include "gwf/gwffilewriter.h"
 #include "gwf/gwfobjectinforeader.h"
+#include "gsf/gsffileloader.h"
+#include "gsf/gsffilewriter.h"
+#include "gsf/gsfobjectinforeader.h"
 #include "scgtemplateobjectbuilder.h"
 #include "config.h"
 #include "scgundoview.h"
@@ -345,32 +348,68 @@ QIcon SCgWindow::icon() const
 
 bool SCgWindow::loadFromFile(const QString &fileName)
 {
-    GWFFileLoader loader;
-
-    if (loader.load(fileName, mView->scene()))
+    QFileInfo fi(fileName);
+    QString ext = fi.suffix();
+    if(ext=="gwf")
     {
-        mFileName = fileName;
-        setWindowTitle(mFileName);
-        emitEvent(EditorObserverInterface::ContentLoaded);
-        return true;
-    }else
-        return false;
+        GWFFileLoader loader;
+        if (loader.load(fileName, mView->scene()))
+        {
+            mFileName = fileName;
+            setWindowTitle(mFileName);
+            emitEvent(EditorObserverInterface::ContentLoaded);
+            return true;
+        }else
+            return false;
+    }
+    else
+    {
+        GSFFileLoader loader;
+        if (loader.load(fileName, mView->scene()))
+        {
+            mFileName = fileName;
+            setWindowTitle(mFileName);
+            emitEvent(EditorObserverInterface::ContentLoaded);
+            return true;
+        }else
+            return false;
+    }
 }
 
 bool SCgWindow::saveToFile(const QString &fileName)
 {
-    GWFFileWriter writer;
-
-    if (writer.save(fileName, mView->scene()))
+    QFileInfo fi(fileName);
+    QString ext = fi.suffix();
+    if(ext=="gwf")
     {
-        mFileName = fileName;
-        setWindowTitle(mFileName);
-        mUndoStack->setClean();
-        emitEvent(EditorObserverInterface::ContentSaved);
+        GWFFileWriter writer;
 
-        return true;
-    }else
-        return false;
+        if (writer.save(fileName, mView->scene()))
+        {
+            mFileName = fileName;
+            setWindowTitle(mFileName);
+            mUndoStack->setClean();
+            emitEvent(EditorObserverInterface::ContentSaved);
+
+            return true;
+        }else
+            return false;
+    }
+    else
+    {
+        GSFFileWriter writer;
+
+        if (writer.save(fileName, mView->scene()))
+        {
+            mFileName = fileName;
+            setWindowTitle(mFileName);
+            mUndoStack->setClean();
+            emitEvent(EditorObserverInterface::ContentSaved);
+
+            return true;
+        }else
+            return false;
+    }
 }
 
 void SCgWindow::_update()
@@ -677,6 +716,7 @@ QStringList SCgWindow::supportedFormatsExt() const
 {
     QStringList res;
     res << "gwf";
+    res << "gsf";
     return res;
 }
 
@@ -739,6 +779,7 @@ QStringList SCgWindowFactory::supportedFormatsExt()
 {
     QStringList res;
     res << "gwf";
+    res << "gsf";
     return res;
 }
 

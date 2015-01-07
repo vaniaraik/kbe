@@ -115,6 +115,7 @@ QStringList SCsWindow::supportedFormatsExt() const
 {
     QStringList res;
     res << "scs";
+    res << "scsi";
     return res;
 }
 
@@ -269,6 +270,7 @@ QStringList SCsWindowFactory::supportedFormatsExt()
 {
     QStringList list;
     list << "scs";
+    list << "scsi";
 
     return list;
 }

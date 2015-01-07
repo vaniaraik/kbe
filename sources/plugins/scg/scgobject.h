@@ -207,6 +207,7 @@ protected:
 
 protected:
     friend class GwfStreamWriter;
+    friend class GsfStreamWriter;
     const SCgTextItem* textItem() const{return mTextItem;}
 
 };
